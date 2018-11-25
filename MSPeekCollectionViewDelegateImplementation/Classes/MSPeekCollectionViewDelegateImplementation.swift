@@ -44,6 +44,8 @@ open class MSPeekCollectionViewDelegateImplementation: NSObject, UICollectionVie
     public let maximumItemsToScroll: Int
     public let numberOfItemsToShow: Int
     public let scrollDirection: UICollectionViewScrollDirection
+    public let bottomInsets: CGFloat
+    public let topInsets: CGFloat
     
     public weak var delegate: MSPeekImplementationDelegate?
     
@@ -112,19 +114,21 @@ open class MSPeekCollectionViewDelegateImplementation: NSObject, UICollectionVie
         let insets = cellSpacing + cellPeekWidth
         switch scrollDirection {
         case .horizontal:
-            return UIEdgeInsets(top: 0, left: insets, bottom: 0, right: insets)
+            return UIEdgeInsets(top: topInsets, left: insets, bottom: bottomInsets, right: insets)
         case .vertical:
             return UIEdgeInsets(top: insets, left: 0, bottom: insets, right: 0)
         }
     }
     
-    public init(cellSpacing: CGFloat = 20, cellPeekWidth: CGFloat = 20, scrollThreshold: CGFloat = 50, maximumItemsToScroll: Int = 1, numberOfItemsToShow: Int = 1, scrollDirection: UICollectionViewScrollDirection = .horizontal) {
+    public init(cellSpacing: CGFloat = 20, cellPeekWidth: CGFloat = 20, scrollThreshold: CGFloat = 50, maximumItemsToScroll: Int = 1, numberOfItemsToShow: Int = 1, scrollDirection: UICollectionViewScrollDirection = .horizontal, bottomInsets: CGFloat = 0, topInsets: CGFloat = 0) {
         self.cellSpacing = cellSpacing
         self.cellPeekWidth = cellPeekWidth
         self.scrollThreshold = scrollThreshold
         self.maximumItemsToScroll = maximumItemsToScroll
         self.numberOfItemsToShow = numberOfItemsToShow
         self.scrollDirection = scrollDirection
+        self.topInsets = topInsets
+        self.bottomInsets = bottomInsets
     }
     
     open func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {

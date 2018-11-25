@@ -66,7 +66,7 @@ class ViewController: UIViewController {
     }
     
     func reloadDelegate() {
-        peekImplementation = MSPeekCollectionViewDelegateImplementation(cellSpacing: CGFloat(cellSpacingSlider.value), cellPeekWidth: CGFloat(cellPeekWidthSlider.value), scrollThreshold: CGFloat(scrollThresholdSlider.value), maximumItemsToScroll: Int(maximumItemsToScrollSlider.value), numberOfItemsToShow: Int(numberOfItemsToShowSlider.value))
+        peekImplementation = MSPeekCollectionViewDelegateImplementation(cellSpacing: CGFloat(cellSpacingSlider.value), cellPeekWidth: CGFloat(cellPeekWidthSlider.value), scrollThreshold: CGFloat(scrollThresholdSlider.value), maximumItemsToScroll: Int(maximumItemsToScrollSlider.value), numberOfItemsToShow: Int(numberOfItemsToShowSlider.value), bottomInsets: 40.0)
         collectionView.delegate = peekImplementation
         collectionView.reloadData()
     }
